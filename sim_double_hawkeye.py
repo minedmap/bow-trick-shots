@@ -45,10 +45,11 @@ class DoubleHawkeyeSim:
                                       va="center", ha="center", fontsize=20, color="green",
                                       fontweight="bold", alpha=0.0)
 
-        ax_v0 = self.fig.add_axes((0.15, 0.18, 0.6, 0.03))
-        ax_theta1 = self.fig.add_axes((0.15, 0.12, 0.6, 0.03))
-        self.slider_v0 = Slider(ax_v0, "v0 (m/s)", 10.0, 50.0, valinit=v0)
-        self.slider_theta1 = Slider(ax_theta1, "theta1 (deg, 45~90)", 45.5, 89.5, valinit=theta1)
+        ax_v0 = self.fig.add_axes((0.26, 0.18, 0.55, 0.03))
+        ax_theta1 = self.fig.add_axes((0.26, 0.12, 0.55, 0.03))
+        self.slider_v0 = Slider(ax_v0, "v0 (m/s)", 10.0, 50.0, valinit=v0, valfmt="%.1f")
+        self.slider_theta1 = Slider(ax_theta1, "theta1 (deg, 45~90)", 45.5, 89.5, valinit=theta1,
+                                     valfmt="%.1f")
         self.slider_v0.on_changed(self._on_slider_change)
         self.slider_theta1.on_changed(self._on_slider_change)
 

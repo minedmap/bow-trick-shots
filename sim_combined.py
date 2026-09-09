@@ -24,13 +24,13 @@ class CombinedSim:
             omega = ph.suggest_omega(self.result.T1, self.result.T2, n=0)
         self.state = PlaybackState(dt=0.02)
 
-        self.fig = plt.figure(figsize=(10, 7))
+        self.fig = plt.figure(figsize=(10, 7.5))
         self.ax = self.fig.add_subplot(111, projection="3d")
-        plt.subplots_adjust(bottom=0.32)
+        plt.subplots_adjust(bottom=0.32, top=0.78)
         self.ax.set_xlabel("x (m) — 다운레인지")
         self.ax.set_ylabel("y (m) — 좌우")
         self.ax.set_zlabel("z (m) — 높이")
-        self.ax.set_title("더블 하위처 + S자 우회 결합 모델 (동일 탄착점 검증)")
+        self.ax.set_title("더블 하위처 + S자 우회 결합 모델 (동일 탄착점 검증)", pad=20)
 
         (self.guide1,) = self.ax.plot([], [], [], "--", color="tab:blue", alpha=0.4, lw=1)
         (self.guide2,) = self.ax.plot([], [], [], "--", color="tab:red", alpha=0.4, lw=1)
@@ -45,16 +45,16 @@ class CombinedSim:
         self.verdict_text = self.fig.text(0.5, 0.95, "", va="top", ha="center", fontsize=14,
                                            fontweight="bold")
 
-        s_left = 0.12
-        s_w = 0.32
+        s_left = 0.20
+        s_w = 0.26
         self.slider_v0 = Slider(self.fig.add_axes((s_left, 0.24, s_w, 0.03)),
-                                 "v0 (m/s)", 10.0, 50.0, valinit=v0)
+                                 "v0 (m/s)", 10.0, 50.0, valinit=v0, valfmt="%.1f")
         self.slider_theta1 = Slider(self.fig.add_axes((s_left, 0.19, s_w, 0.03)),
-                                     "theta1 (deg)", 45.5, 89.5, valinit=theta1)
+                                     "theta1 (deg)", 45.5, 89.5, valinit=theta1, valfmt="%.1f")
         self.slider_A = Slider(self.fig.add_axes((s_left, 0.14, s_w, 0.03)),
-                                "A (m)", 0.0, 3.0, valinit=A)
+                                "A (m)", 0.0, 3.0, valinit=A, valfmt="%.2f")
         self.slider_omega = Slider(self.fig.add_axes((s_left, 0.09, s_w, 0.03)),
-                                    "omega (rad/s)", 0.0, 3.0, valinit=omega)
+                                    "omega (rad/s)", 0.0, 3.0, valinit=omega, valfmt="%.2f")
         for s in (self.slider_v0, self.slider_theta1, self.slider_A, self.slider_omega):
             s.on_changed(self._on_slider_change)
 

@@ -57,17 +57,21 @@ class SCurveSim:
         s_left = 0.15
         s_w = 0.32
         self.slider_A = Slider(self.fig.add_axes((s_left, 0.30, s_w, 0.03)),
-                                "A (횡방향 진폭, m)", 0.0, 5.0, valinit=A)
+                                "A (횡방향 진폭, m)", 0.0, 5.0, valinit=A, valfmt="%.2f")
         self.slider_omega = Slider(self.fig.add_axes((s_left, 0.25, s_w, 0.03)),
-                                    "omega (rad/s)", 0.05, 4.0, valinit=omega)
+                                    "omega (rad/s)", 0.05, 4.0, valinit=omega, valfmt="%.2f")
         self.slider_obs1_x = Slider(self.fig.add_axes((s_left, 0.20, s_w, 0.03)),
-                                     "장애물1 x", 5.0, target_x - 5, valinit=self.obstacles[0]["x"])
+                                     "장애물1 x", 5.0, target_x - 5, valinit=self.obstacles[0]["x"],
+                                     valfmt="%.1f")
         self.slider_obs1_y = Slider(self.fig.add_axes((s_left, 0.15, s_w, 0.03)),
-                                     "장애물1 y", -4.0, 4.0, valinit=self.obstacles[0]["y"])
+                                     "장애물1 y", -4.0, 4.0, valinit=self.obstacles[0]["y"],
+                                     valfmt="%.1f")
         self.slider_obs2_x = Slider(self.fig.add_axes((s_left, 0.10, s_w, 0.03)),
-                                     "장애물2 x", 5.0, target_x - 5, valinit=self.obstacles[1]["x"])
+                                     "장애물2 x", 5.0, target_x - 5, valinit=self.obstacles[1]["x"],
+                                     valfmt="%.1f")
         self.slider_obs2_y = Slider(self.fig.add_axes((s_left, 0.05, s_w, 0.03)),
-                                     "장애물2 y", -4.0, 4.0, valinit=self.obstacles[1]["y"])
+                                     "장애물2 y", -4.0, 4.0, valinit=self.obstacles[1]["y"],
+                                     valfmt="%.1f")
         for s in (self.slider_A, self.slider_omega, self.slider_obs1_x,
                   self.slider_obs1_y, self.slider_obs2_x, self.slider_obs2_y):
             s.on_changed(self._on_slider_change)
